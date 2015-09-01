@@ -13,8 +13,12 @@
     set up, scheduled, and communicated to p workers at a (serial)
     central server; this takes an overhead time alpha per task.
     What is the theoretically achievable throughput (tasks/time)?
+A: The theoritically achievable throughput is 1/alpha
 
 3.  Under what circumstances is it best to not tune?
+A: It is best to not tune when 
+    - Performance is not an issue for what the code is used for.
+    - The overhead time is significant 
 
 4.  The class cluster consists of eight nodes and fifteen Xeon Phi
     accelerator boards.  Based on an online search for information on
@@ -24,4 +28,28 @@
     in your calculation.  (We will return to this question again after
     we cover some computer architecture.)
     
+A: URL for Phi board specs: http://ark.intel.com/products/71992/Intel-Xeon-Phi-Coprocessor-5110P-8GB-1_053-GHz-60-core
+    The specs are:
+    - # of memory channels: 16
+    - # of Cores:	60
+    - Processor Base Frequency:	1.053 GHz
+    The cluster has a total of 15 Phi boards.
+    Peak flop rate = 16 Flops/core * 60 cores * 1.053 Ghz * 15 boards = 15,163.2 GFlops/sec
+
+  URL for the Xeon processors: http://ark.intel.com/products/83352/Intel-Xeon-Processor-E5-2620-v3-15M-Cache-2_40-GHz
+  The specs are:
+  - # of memory channels: 4
+  - # of threads: 12
+  - # of cores: 8*12 = 96
+  - Base frequency: 2.4 GHz
+  Peak flop rate = 4 Flops/core * 12 threads * 96 cores * 2.4 GHz = 11,059.2 GFlops/sec
+  
+  The total peak flop rate is: 26,222.4 GFlops/sec
+
+
 5.  What is the approximate theoretical peak flop rate for your own machine?
+    My machine has a 5th Gen Intel CORE i7 whose specs are:
+    - # of memory channels:
+    - # of threads: 4
+    - # of cores: 2
+    - Frequency: 2.4 GHz
