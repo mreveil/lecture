@@ -11,12 +11,36 @@ with questions for class!
     you computed this, and give URLs for where you got the parameters
     in your calculation.  (We will return to this question again after
     we cover some computer architecture.)
+	
+A: URL for Phi board specs: http://ark.intel.com/products/71992/Intel-Xeon-Phi-Coprocessor-5110P-8GB-1_053-GHz-60-core
+    The specs are:
+    - Th boards use the Haswell microarchitecture with 16 Flops/cycle
+    - # of Cores:	60
+    - Processor Base Frequency:	1.053 GHz
+    The cluster has a total of 15 Phi boards.
+    Peak flop rate = 16 Flops/core * 60 cores * 1.053 Ghz * 15 boards = 15,163.2 GFlops/sec
+
+  URL for the Xeon processors: http://ark.intel.com/products/83352/Intel-Xeon-Processor-E5-2620-v3-15M-Cache-2_40-GHz
+  The specs are:
+  - Based on the same architecture
+  - # of cores: 8*12 = 96
+  - Base frequency: 2.4 GHz
+  Peak flop rate = 16 Flops/cycle * 96 cores * 2.4 GHz = 3,686.4 GFlops/sec
+  
+  The total peak flop rate is: 18,849.6 GFlops/sec
     
 2.  What is the approximate theoretical peak flop rate for your own machine?
+
+A-  My machine has a 5th Gen Intel CORE i7 with 
+    - # of cores: 2
+    - Frequency: 2.4 GHz
+	Assuming the Haswell architecture, the peak flop rate is: 16 Flops/cycle * 2 cores * 2.4 GHz = 76.8 GFlops/sec
 
 3.  Suppose there are t tasks that can be executed in a pipeline
     with p stages.  What is the speedup over serial execution of the
     same tasks?
+	
+A - If alpha is the time to do 1 task: speedup = alpha*t/p*alpha = t/p
 
 4.  Consider the following list of tasks (assume they can't be pipelined):
 
@@ -30,6 +54,9 @@ with questions for class!
     What is the minimum serial time between starting to compile and having
     a compiled application?  What is the minimum parallel time given
     an arbitrary number of processors?
+	
+A: 	Minimum serial time: 2.75
+	Minimum parallel time: 2.25
 
 5.  Clone the membench repository from GitHub:
 
@@ -69,3 +96,10 @@ with questions for class!
     compiler.  To do this, run "module load cs5220" and run (e.g.)
 
         icc -o centroid centroid.c
+		
+	A:  Version 1: 1.000000e-02
+		Version 2: 1.060000e-02
+		Version 3: 7.600000e-03
+		
+		Version 3 is faster
+
