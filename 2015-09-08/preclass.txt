@@ -22,10 +22,18 @@ something into an already-full cache.
 the memory-based AI of this code? (Hint: What is the memory-based AI of just the
 innermost loop?)
 
+Since 1 row and 1 column of data (of total size 16N) is too large to fit in cache, so we have to do 1 data transfer for each FMA.
+Since it is double precision operations, each number will be 8 bytes and we need two numbers for each data transfer.
+Therefore, we have 2 flops/ 2*8bytes
+AI = 1/8 Flops/bytes
+
 
 2. Now suppose that the cache is substantially larger than 16N, but
 substantially smaller than 8N^2. What is the AI now?
 
+Since 1 row and 1 column of data is very small compared to the cache and therefore can stay there for all the operations
+()but the entire matrix is too big to fit in cache), we'll have 2*N flops/8*N 
+AI = 1/4 flops/byte
 
 3. Now suppose the cache is large enough to hold all of A, B, and C. What is the
 AI now? (Hint: Writing to a byte of memory not already in the cache incurs two
